@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from PIL import Image
 from views.pages.tela_cadContato import CadContato
+from controllers import querys
+from views.widgets.widgetContato import WidgetContato
 class TelaInicial(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -21,7 +23,7 @@ class TelaInicial(ctk.CTk):
         self.title("Contatos")
 
     def criarWidgets(self):
-        self.limparWidgets()
+        self.limparWidgets(widget=self)
         self.iconBusca = ctk.CTkImage(Image.open('assets/icons/lupa.png'), size=(32,32))
 
         self.frameMenu = ctk.CTkFrame(self)
@@ -43,13 +45,25 @@ class TelaInicial(ctk.CTk):
         self.entryBuscar.pack(fill=ctk.X, side=ctk.LEFT, expand=True, padx=10)
         self.btAdicionar.pack(side=ctk.LEFT, padx=5)
 
+        self.carregarContatos()
+
     def carregarContatos(self):
-        pass
+        alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        self.limparWidgets(widget=self.frameContatos)
+        for filtro in alfabeto:
+            frame = ctk.CTkFrame(self.frameContatos)
+            frame.pack(fill=ctk.X, pady=10)
+            ctk.CTkLabel(frame, text=filtro).pack(anchor=ctk.W)
+            for contato in querys.pesquisar_contatos_por_inicial(filtro):
+                WidgetContato(master=frame, contato=contato).pack(anchor=ctk.W,padx=10, pady=5, fill=ctk.X)
+            if len(frame.winfo_children()) == 1:
+                frame.destroy()
+
 
     def abrirCadastroContato(self):
-        self.limparWidgets()
+        self.limparWidgets(widget=self)
         CadContato(self).pack(fill=ctk.BOTH,expand=True)
 
-    def limparWidgets(self):
-        for w in self.winfo_children():
+    def limparWidgets(self, widget):
+        for w in widget.winfo_children():
             w.destroy()
