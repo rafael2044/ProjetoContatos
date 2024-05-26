@@ -1,8 +1,10 @@
 from assets.database.database import db
 from models.contato import Contato
+from assets.fonts.fonts import install_fonts
 
 def configure_all():
     configure_db(db)
+    install_fonts()
 def configure_db(db):
     with db:
         db.create_tables([Contato])

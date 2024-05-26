@@ -41,7 +41,7 @@ class TelaInicial(ctk.CTk):
         self.frameMenu.pack(fill=ctk.X)
         self.frameContatos.pack(expand=True, fill=ctk.BOTH)
         self.frameBusca.pack(fill=ctk.BOTH, expand=True, side=ctk.LEFT, padx=10, pady=10)
-        self.lbIconBuscar.pack(side=ctk.LEFT, padx=5)
+        self.lbIconBuscar.pack(side=ctk.LEFT, padx=10, pady=10)
         self.entryBuscar.pack(fill=ctk.X, side=ctk.LEFT, expand=True, padx=10)
         self.btAdicionar.pack(side=ctk.LEFT, padx=5)
 
