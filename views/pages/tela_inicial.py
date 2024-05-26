@@ -33,7 +33,7 @@ class TelaInicial(ctk.CTk):
         self.lbIconBuscar = ctk.CTkLabel(self.frameBusca,text='', image=self.iconBusca)
         self.entryBuscar = ctk.CTkEntry(self.frameBusca, height=40,
                                         fg_color='#404040', bg_color='#404040', border_color="#404040")
-        self.btAdicionar = ctk.CTkButton(self.frameMenu, text='+', height=40, width=50, fg_color='#6d28d9',
+        self.btAdicionar = ctk.CTkButton(self.frameMenu, text='+', height=50, width=50, fg_color='#6d28d9',
                                          hover_color='#8b5cf6', corner_radius=30, command=self.abrirCadastroContato)
 
     def carregarWidgets(self):
@@ -48,12 +48,13 @@ class TelaInicial(ctk.CTk):
         self.carregarContatos()
 
     def carregarContatos(self):
+        fontInicial = ctk.CTkFont("Roboto-Bold", size=20, weight='bold')
         alfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         self.limparWidgets(widget=self.frameContatos)
         for filtro in alfabeto:
             frame = ctk.CTkFrame(self.frameContatos)
             frame.pack(fill=ctk.X, pady=10)
-            ctk.CTkLabel(frame, text=filtro).pack(anchor=ctk.W)
+            ctk.CTkLabel(frame, text=filtro, font=fontInicial).pack(anchor=ctk.W)
             for contato in querys.pesquisar_contatos_por_inicial(filtro):
                 WidgetContato(master=frame, contato=contato).pack(anchor=ctk.W,padx=10, pady=5, fill=ctk.X)
             if len(frame.winfo_children()) == 1:

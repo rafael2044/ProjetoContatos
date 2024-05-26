@@ -22,13 +22,12 @@ class WidgetContato(CTkFrame):
             '#9333ea', '#a21caf', '#701a75', '#4a044e', '#be185d', '#e11d48', '#881337', '#292524',
             '#27272a', '#111827'
         ]
-        fontContato = CTkFont('Roboto-Regular', size=15)
+        fontContato = CTkFont('Roboto-Regular', size=18)
         fontInicial = CTkFont('Roboto-Bold', size=30, weight='bold')
 
         self.frameImg = CTkFrame(self, corner_radius=100, bg_color='transparent', fg_color=cores[random.randint(0, len(cores)-1)])
         self.lbInicial = CTkLabel(self.frameImg, text=self.inicial, font=fontInicial,
                                   width=50, height=50, bg_color='transparent', fg_color='transparent')
-
         self.lbNomeCompleto = CTkLabel(self, text=f"{self.contato.nome} {self.contato.sobrenome}", font=fontContato)
 
     def carregarWidgets(self):
@@ -37,10 +36,10 @@ class WidgetContato(CTkFrame):
         self.lbNomeCompleto.pack(side=LEFT)
 
         self.frameImg.bind('<Enter>', lambda event: self.configure(fg_color='#6b7280'))
-        self.frameImg.bind('<Leave>', lambda event: self.configure(fg_color=["gray85", "gray16"]))
+        self.frameImg.bind('<Leave>', lambda event: self.configure(fg_color=['gray81', 'gray20']))
         self.lbInicial.bind('<Enter>', lambda event: self.configure(fg_color='#6b7280'))
-        self.lbInicial.bind('<Leave>', lambda event: self.configure(fg_color=["gray85", "gray16"]))
+        self.lbInicial.bind('<Leave>', lambda event: self.configure(fg_color=['gray81', 'gray20']))
         self.lbNomeCompleto.bind('<Enter>', lambda event: self.configure(fg_color='#6b7280'))
-        self.lbNomeCompleto.bind('<Leave>', lambda event: self.configure(fg_color=["gray85", "gray16"]))
+        self.lbNomeCompleto.bind('<Leave>', lambda event: self.configure(fg_color=['gray81', 'gray20']))
         self.bind('<Enter>', lambda event: self.configure(fg_color='#6b7280'))
-        self.bind('<Leave>', lambda event: self.configure(fg_color=["gray85", "gray16"]))
+        self.bind('<Leave>', lambda event: self.configure(fg_color=['gray81', 'gray20']))
