@@ -16,6 +16,7 @@ class Contato(pw.Model):
     celular = pw.CharField(max_length=11)
     email = pw.CharField(max_length=200)
     obs = pw.TextField()
+    foto = pw.TextField()
 
     class Meta:
         database = db

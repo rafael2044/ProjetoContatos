@@ -3,6 +3,7 @@ from PIL import Image
 from views.pages.tela_cadContato import CadContato
 from controllers import querys
 from views.widgets.widgetContato import WidgetContato
+from assets.icons.icons import iconLupa
 class TelaInicial(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -12,7 +13,7 @@ class TelaInicial(ctk.CTk):
         self.mainloop()
     def configurarGeometria(self):
         WIDTH = 600
-        HEIGHT = 800
+        HEIGHT = 700
 
         pos_x = (self.winfo_screenwidth() - WIDTH) // 2
         pos_y = (self.winfo_screenheight() - HEIGHT) // 2
@@ -25,12 +26,13 @@ class TelaInicial(ctk.CTk):
     def criarWidgets(self):
         self.limparWidgets(widget=self)
         self.iconBusca = ctk.CTkImage(Image.open('assets/icons/lupa.png'), size=(32,32))
+        iconBuscar = ctk.CTkImage(Image.open(iconLupa), size=(32,32))
 
         self.frameMenu = ctk.CTkFrame(self)
         self.frameContatos = ctk.CTkScrollableFrame(self)
 
         self.frameBusca = ctk.CTkFrame(self.frameMenu, corner_radius=50, fg_color='#404040', height=40)
-        self.lbIconBuscar = ctk.CTkLabel(self.frameBusca,text='', image=self.iconBusca)
+        self.lbIconBuscar = ctk.CTkLabel(self.frameBusca,text='', image=iconBuscar)
         self.entryBuscar = ctk.CTkEntry(self.frameBusca, height=40,
                                         fg_color='#404040', bg_color='#404040', border_color="#404040")
         self.btAdicionar = ctk.CTkButton(self.frameMenu, text='+', height=50, width=50, fg_color='#6d28d9',
